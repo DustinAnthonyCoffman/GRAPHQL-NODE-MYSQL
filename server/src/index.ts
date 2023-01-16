@@ -4,6 +4,7 @@ import {graphqlHTTP} from 'express-graphql'
 import {schema} from './schema'
 import cors from 'cors'
 import {createConnection} from 'typeorm'
+import {Users} from './Entities/Users'
 
 const main = async () => {
     //configuration will be done async
@@ -13,14 +14,15 @@ const main = async () => {
 
     //create connection variable from typeorm to create a connection to our database
     //we generate all tables in our mysql workbench when we have entities
+    //setting synchronize to true allows us to set our entities in the list and create tables in workbench
     await createConnection({
         type: "mysql",
         database: "GraphqlCRUD",
         username: "root",
-        password: "",
+        password: "1five55Ol$en",
         logging: true,
-        synchronize: false,
-        entities: []
+        synchronize: true,
+        entities: [Users]
     });
 
     const app = express()
