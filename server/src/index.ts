@@ -15,13 +15,14 @@ const main = async () => {
     //create connection variable from typeorm to create a connection to our database
     //we generate all tables in our mysql workbench when we have entities
     //setting synchronize to true allows us to set our entities in the list and create tables in workbench
+    //we dont exactly want sync to be true because itll try and create a new table everytime
     await createConnection({
         type: "mysql",
         database: "GraphqlCRUD",
         username: "root",
         password: "1five55Ol$en",
         logging: true,
-        synchronize: true,
+        synchronize: false,
         entities: [Users]
     });
 
